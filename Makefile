@@ -30,6 +30,115 @@ else
 	endif
 endif
 
+
+##########################
+# Ripbylop configuration #
+##########################
+.PHONY: image_db_create_ripbylop_libre
+image_db_create_ripbylop_libre:
+	#./.venv/bin/python3 ./odoo/odoo-bin db --drop --database image_creation_ripbylop
+	#./.venv/bin/python3 ./odoo/odoo-bin db --clone --from_database image_creation_ripbylop --database image_creation_erplibre_base
+	./script/database/db_restore.py --database image_creation_ripbylop_libre --image erplibre_base
+	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,project_budget
+	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder
+	#J'ai retiré purchase pour ce premier release...on le rajoutera plus tard. (purchase,purchase_tier_validation, project_purchase_link)
+	./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,l10n_ca,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder
+	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop_libre --restore_image ripbylop_libre_base
+
+.PHONY: image_db_create_ripbylop
+image_db_create_ripbylop:
+	./script/database/db_restore.py --database image_creation_ripbylop --image ripbylop_libre_base
+	
+	# Achetés
+	# grant_fund_website
+	# grant_fund_event_integrate
+	
+	# Poly
+	# helpdesk_mgmt_approbation_purchase
+	# project_benefice_research
+
+	# Disponibles
+	# event_project_task
+	# grant_fund_manage_bundle
+	# microsoft_office365_all_in_one_bundle
+	# pragtech_odoo_microsoftteams_meeting_integration
+	# project_team_odoo
+	# grant_fund_budget_manage
+	# grant_fund
+	# odoo_account_budget
+	# pragtech_odoo_task_ms_365_calendar
+	# material_purchase_requisitions
+	# pragtech_onedrive_integration
+	./script/addons/install_addons.sh image_creation_ripbylop helpdesk_mgmt_approbation_purchase,project_benefice_research,grant_fund_website
+	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop --restore_image ripbylop_base
+
+.PHONY: ripbylop_setup
+ripbylop_setup:
+	./script/make.sh db_clean_cache
+	./script/make.sh image_db_create_ripbylop_libre
+	./script/make.sh image_db_create_ripbylop
+
+.PHONY: ripbylop
+ripbylop:
+	./script/database/db_restore.py --database ripbylop --image ripbylop_base
+	./script/addons/install_addons.sh ripbylop ripbylop,ripbylop_configuration,ripbylop_configuration_2,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
+	./run.sh --no-http --stop-after-init -d ripbylop --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop/i18n/fr_CA.po
+
+.PHONY: ripbylop_dev
+ripbylop_dev:
+	./script/database/db_restore.py --database ripbylop_dev --image ripbylop_base
+	./script/addons/install_addons.sh ripbylop_dev ripbylop,ripbylop_configuration,ripbylop_configuration_2,ripbylop_configuration_dev,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
+	./run.sh --no-http --stop-after-init -d ripbylop_dev --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop/i18n/fr_CA.po
+
+.PHONY: ripbylop_dev_all
+ripbylop_dev_all:
+	./script/make.sh ripbylop_setup
+	#parallel ::: "./script/make.sh ripbylop" "./script/make.sh ripbylop_dev"
+	./script/make.sh ripbylop
+	./script/make.sh ripbylop_dev
+
+.PHONY: ripbylop_dev_all_afb
+ripbylop_dev_all_afb:
+	git stash; git pull --rebase; git status
+	cd odoo; git pull --rebase; git status; cd -
+	cd addons/addons; git stash; git pull --rebase; git status; cd -
+	./script/manifest/update_manifest_local_dev.sh
+	./script/make.sh ripbylop_dev_all
+	make config_gen_all
+	./script/addons/install_addons.sh ripbylop_dev website_slides,project_category,helpdesk_mgmt_timesheet,helpdesk_mgmt_project,board,mail_activity_board
+
+.PHONY: ripbylop_migration_octobre_2023
+ripbylop_migration_octobre_2023:
+	./script/database/db_restore.py --database ripbylop_prod_test_grant --image ripbylop_2023-10-30_00-41-49_avant_mise_en_production
+	./script/addons/update_prod_to_dev.sh ripbylop_prod_test_grant
+	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration
+	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration
+	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop
+	./run.sh --no-http --stop-after-init -d ripbylop_prod_test_grant --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop/i18n/fr_CA.po
+	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2,grant_fund,grant_fund_website,email_cc
+	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2
+	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database ripbylop_prod_test_grant --restore_image ripbylop_2023-10-30_00-41-49_apres_mise_en_production
+
+.PHONY: ripbylop_dev_status
+ripbylop_dev_status:
+	git fetch; git config color.ui true; git config color.status.header "blue bold"; git status
+	cd odoo; git fetch; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
+	cd addons/addons; git fetch; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
+
+.PHONY: ripbylop_dev_status_tabs
+ripbylop_dev_status_tabs:
+	xterm -e git fetch; git status
+	xterm -e cd odoo; git fetch; git status; cd -
+	xterm -e cd addons/addons; git fetch; git status; cd -
+
+.PHONY: ripbylop_run
+ripbylop_run:
+	./run.sh -d ripbylop
+
+.PHONY: ripbylop_dev_run
+ripbylop_dev_run:
+	./run.sh -d ripbylop_dev
+
 #########
 #  RUN  #
 #########

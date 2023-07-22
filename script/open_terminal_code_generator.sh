@@ -9,6 +9,9 @@ paths=(
   "${working_path}/addons/TechnoLibre_odoo-code-generator-template"
 #  "${working_path}/addons/OCA_server-tools"
 
+"${working_path}/addons/addons"
+"${working_path}/addons/OCA_helpdesk"
+
 )
 
 first_iteration=true
