@@ -59,9 +59,18 @@ ripbylop_setup:
 ripbylop:
 	./script/database/db_restore.py --database ripbylop --image ripbylop_base
 
+.PHONY: ripbylop_dev
+ripbylop_dev:
+	./script/database/db_restore.py --database ripbylop_dev --image ripbylop_base
+	./script/addons/install_addons.sh ripbylop_dev ripbylop_configuration_dev
+
 .PHONY: ripbylop_run
 ripbylop_run:
 	./run.sh -d ripbylop
+
+.PHONY: ripbylop_dev_run
+ripbylop_dev_run:
+	./run.sh -d ripbylop_dev
 
 #########
 #  RUN  #

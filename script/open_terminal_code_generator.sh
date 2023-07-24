@@ -8,6 +8,9 @@ paths=(
 #"${working_path}/addons/ERPLibre_erplibre_addons"
 #"${working_path}/addons/OCA_server-tools"
 
+"${working_path}/addons/addons"
+"${working_path}/addons/OCA_helpdesk"
+
 )
 cmd_before="cd "
 # when change directory, open a new tab with command to execute
