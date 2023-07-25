@@ -47,11 +47,12 @@ image_db_create_ripbylop_libre:
 image_db_create_ripbylop:
 	./script/database/db_restore.py --database image_creation_ripbylop --image ripbylop_libre_base
 	#./script/addons/install_addons.sh image_creation_ripbylop event_project_task,grant_fund_manage_bundle,grant_fund_website_contactus,microsoft_office365_all_in_one_bundle,pragtech_odoo_microsoftteams_meeting_integration,project_team_odoo,grant_fund_budget_manage,grant_fund_manage_odoo,job_costing_budget_contracting,odoo_account_budget,pragtech_odoo_task_ms_365_calendar,grant_fund_event_integrate,grant_fund_project_costing,material_purchase_requisitions,odoo_job_costing_management,pragtech_onedrive_integration
-	./script/addons/install_addons.sh image_creation_ripbylop event_project_task,grant_fund_manage_bundle,grant_fund_website_contactus,microsoft_office365_all_in_one_bundle,pragtech_odoo_microsoftteams_meeting_integration,project_team_odoo,grant_fund_budget_manage,grant_fund_manage_odoo,job_costing_budget_contracting,odoo_account_budget,pragtech_odoo_task_ms_365_calendar,grant_fund_event_integrate,grant_fund_project_costing,material_purchase_requisitions,odoo_job_costing_management,pragtech_onedrive_integration,prt_mail_messages,prt_mail_messages_pro
+	./script/addons/install_addons.sh image_creation_ripbylop event_project_task,grant_fund_manage_bundle,grant_fund_website_contactus,microsoft_office365_all_in_one_bundle,pragtech_odoo_microsoftteams_meeting_integration,project_team_odoo,grant_fund_budget_manage,grant_fund_manage_odoo,job_costing_budget_contracting,odoo_account_budget,pragtech_odoo_task_ms_365_calendar,grant_fund_event_integrate,grant_fund_project_costing,material_purchase_requisitions,odoo_job_costing_management,pragtech_onedrive_integration,prt_mail_messages,prt_mail_messages_pro,ripbylop_configuration
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop --restore_image ripbylop_base
 
 .PHONY: ripbylop_setup
 ripbylop_setup:
+	./script/make.sh db_clean_cache
 	./script/make.sh image_db_create_ripbylop_libre
 	./script/make.sh image_db_create_ripbylop
 
@@ -63,6 +64,12 @@ ripbylop:
 ripbylop_dev:
 	./script/database/db_restore.py --database ripbylop_dev --image ripbylop_base
 	./script/addons/install_addons.sh ripbylop_dev ripbylop_configuration_dev
+
+.PHONY: ripbylop_dev_all
+ripbylop_dev_all:
+	./script/make.sh ripbylop_setup
+	./script/make.sh ripbylop
+	./script/make.sh ripbylop_dev
 
 .PHONY: ripbylop_run
 ripbylop_run:
