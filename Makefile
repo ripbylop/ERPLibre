@@ -59,11 +59,13 @@ ripbylop_setup:
 .PHONY: ripbylop
 ripbylop:
 	./script/database/db_restore.py --database ripbylop --image ripbylop_base
+	./run.sh --no-http --stop-after-init -d ripbylop --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop_configuration/i18n/fr_CA.po
 
 .PHONY: ripbylop_dev
 ripbylop_dev:
 	./script/database/db_restore.py --database ripbylop_dev --image ripbylop_base
 	./script/addons/install_addons.sh ripbylop_dev ripbylop_configuration_dev
+	./run.sh --no-http --stop-after-init -d ripbylop_dev --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop_configuration/i18n/fr_CA.po
 
 .PHONY: ripbylop_dev_all
 ripbylop_dev_all:
