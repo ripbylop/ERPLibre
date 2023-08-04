@@ -40,7 +40,7 @@ image_db_create_ripbylop_libre:
 	#./.venv/bin/python3 ./odoo/odoo-bin db --clone --from_database image_creation_ripbylop --database image_creation_erplibre_base
 	./script/database/db_restore.py --database image_creation_ripbylop_libre --image erplibre_base
 	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,social_mail_followers,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,project_budget
-	./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,mail_show_follower,helpdesk_merge
+	./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,mail_show_follower,helpdesk_merge,ks_email_cc
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop_libre --restore_image ripbylop_libre_base
 
 .PHONY: image_db_create_ripbylop
