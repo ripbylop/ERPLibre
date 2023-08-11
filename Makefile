@@ -75,9 +75,9 @@ ripbylop_dev_all:
 
 .PHONY: ripbylop_dev_all_afb
 ripbylop_dev_all_afb:
-	git stash & git pull
-	cd odoo & git pull & cd ..
-	cd addons/addons $ & git stash & git pull & cd ../..
+	git stash; git pull
+	cd odoo; git pull; cd ..
+	cd addons/addons ; git stash; git pull; cd ../..
 	./script/make.sh ripbylop_dev_all
         
 
