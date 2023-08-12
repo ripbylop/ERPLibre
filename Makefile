@@ -86,6 +86,12 @@ ripbylop_dev_status:
 	cd odoo; git status; cd -
 	cd addons/addons; git status; cd -
 
+.PHONY: ripbylop_dev_status_tabs
+ripbylop_dev_status_tabs:
+	xterm -e git status
+	xterm -e cd odoo; git status; cd -
+	xterm -e cd addons/addons; git status; cd -
+
 .PHONY: ripbylop_run
 ripbylop_run:
 	./run.sh -d ripbylop
