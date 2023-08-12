@@ -80,6 +80,12 @@ ripbylop_dev_all_afb:
 	cd addons/addons; git stash; git pull; cd -
 	./script/make.sh ripbylop_dev_all
 
+.PHONY: ripbylop_dev_status
+ripbylop_dev_status:
+	git status
+	cd odoo; git status; cd -
+	cd addons/addons; git status; cd -
+
 .PHONY: ripbylop_run
 ripbylop_run:
 	./run.sh -d ripbylop
