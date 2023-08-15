@@ -75,22 +75,22 @@ ripbylop_dev_all:
 
 .PHONY: ripbylop_dev_all_afb
 ripbylop_dev_all_afb:
-	git stash; git pull
-	cd odoo; git pull; cd -
-	cd addons/addons; git stash; git pull; cd -
+	git stash; git pull --rebase
+	cd odoo; git pull --rebase; cd -
+	cd addons/addons; git stash; git pull --rebase; cd -
 	./script/make.sh ripbylop_dev_all
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
-	git status
-	cd odoo; git status; cd -
-	cd addons/addons; git status; cd -
+	git fetch; git status
+	cd odoo; git fetch; git status; cd -
+	cd addons/addons; git fetch; git status; cd -
 
 .PHONY: ripbylop_dev_status_tabs
 ripbylop_dev_status_tabs:
-	xterm -e git status
-	xterm -e cd odoo; git status; cd -
-	xterm -e cd addons/addons; git status; cd -
+	xterm -e git fetch; git status
+	xterm -e cd odoo; git fetch; git status; cd -
+	xterm -e cd addons/addons; git fetch; git status; cd -
 
 .PHONY: ripbylop_run
 ripbylop_run:
