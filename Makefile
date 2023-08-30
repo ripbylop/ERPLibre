@@ -41,15 +41,38 @@ image_db_create_ripbylop_libre:
 	./script/database/db_restore.py --database image_creation_ripbylop_libre --image erplibre_base
 	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,project_budget
 	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder
-	#J'ai retiré pruchase pour ce premier release...on le rajoutera plus tard. (purchase,purchase_tier_validation, project_purchase_link)
+	#J'ai retiré purchase pour ce premier release...on le rajoutera plus tard. (purchase,purchase_tier_validation, project_purchase_link)
 	./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,l10n_ca,project_category,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop_libre --restore_image ripbylop_libre_base
 
 .PHONY: image_db_create_ripbylop
 image_db_create_ripbylop:
 	./script/database/db_restore.py --database image_creation_ripbylop --image ripbylop_libre_base
-	#./script/addons/install_addons.sh image_creation_ripbylop event_project_task,grant_fund_manage_bundle,grant_fund_website_contactus,microsoft_office365_all_in_one_bundle,pragtech_odoo_microsoftteams_meeting_integration,project_team_odoo,grant_fund_budget_manage,grant_fund_manage_odoo,job_costing_budget_contracting,odoo_account_budget,pragtech_odoo_task_ms_365_calendar,grant_fund_event_integrate,grant_fund_project_costing,material_purchase_requisitions,odoo_job_costing_management,pragtech_onedrive_integration,ripbylop_configuration,helpdesk_mgmt_approbation_purchase
-	./script/addons/install_addons.sh image_creation_ripbylop ripbylop_configuration,helpdesk_mgmt_approbation_purchase
+	
+	# Achetés
+	# grant_fund_website_contactus
+	# grant_fund_event_integrate
+	
+	# Poly
+	# ripbylop_configuration
+	# helpdesk_mgmt_approbation_purchase
+	
+	# Disponibles
+	# event_project_task
+	# grant_fund_manage_bundle
+	# microsoft_office365_all_in_one_bundle
+	# pragtech_odoo_microsoftteams_meeting_integration
+	# project_team_odoo
+	# grant_fund_budget_manage
+	# grant_fund_manage_odoo
+	# job_costing_budget_contracting
+	# odoo_account_budget
+	# pragtech_odoo_task_ms_365_calendar
+	# grant_fund_project_costing
+	# material_purchase_requisitions
+	# odoo_job_costing_management
+	# pragtech_onedrive_integration
+	./script/addons/install_addons.sh image_creation_ripbylop ripbylop_configuration,helpdesk_mgmt_approbation_purchase,grant_fund_website_contactus,grant_fund_event_integrate
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop --restore_image ripbylop_base
 
 .PHONY: ripbylop_setup
