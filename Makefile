@@ -102,16 +102,16 @@ ripbylop_dev_all:
 
 .PHONY: ripbylop_dev_all_afb
 ripbylop_dev_all_afb:
-	git stash; git pull --rebase
-	cd odoo; git pull --rebase; cd -
-	cd addons/addons; git stash; git pull --rebase; cd -
+	git stash; git pull --rebase; git config color.ui true; git config color.status.header "blue bold"; git status
+	cd odoo; git pull --rebase; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
+	cd addons/addons; git stash; git pull --rebase; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
 	./script/make.sh ripbylop_dev_all
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
-	git fetch; git status
-	cd odoo; git fetch; git status; cd -
-	cd addons/addons; git fetch; git status; cd -
+	git fetch; git config color.ui true; git config color.status.header "blue bold"; git status
+	cd odoo; git fetch; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
+	cd addons/addons; git fetch; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
 
 .PHONY: ripbylop_dev_status_tabs
 ripbylop_dev_status_tabs:
