@@ -56,6 +56,7 @@ image_db_create_ripbylop:
 	# Poly
 	# ripbylop_configuration
 	# helpdesk_mgmt_approbation_purchase
+	# project_benefice_research
 	
 	# Disponibles
 	# event_project_task
@@ -72,7 +73,7 @@ image_db_create_ripbylop:
 	# material_purchase_requisitions
 	# odoo_job_costing_management
 	# pragtech_onedrive_integration
-	./script/addons/install_addons.sh image_creation_ripbylop ripbylop_configuration,helpdesk_mgmt_approbation_purchase,grant_fund_website_contactus,grant_fund_event_integrate
+	./script/addons/install_addons.sh image_creation_ripbylop ripbylop_configuration,helpdesk_mgmt_approbation_purchase,project_benefice_research,grant_fund_website_contactus,grant_fund_event_integrate
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop --restore_image ripbylop_base
 
 .PHONY: ripbylop_setup
