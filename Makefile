@@ -103,9 +103,9 @@ ripbylop_dev_all:
 
 .PHONY: ripbylop_dev_all_afb
 ripbylop_dev_all_afb:
-	git stash; git pull --rebase; git config color.ui true; git config color.status.header "blue bold"; git status
-	cd odoo; git pull --rebase; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
-	cd addons/addons; git stash; git pull --rebase; git config color.ui true; git config color.status.header "blue bold"; git status; cd -
+	git stash; git pull --rebase; git status
+	cd odoo; git pull --rebase; git status; cd -
+	cd addons/addons; git stash; git pull --rebase; git status; cd -
 	./script/make.sh ripbylop_dev_all
 
 .PHONY: ripbylop_dev_status
