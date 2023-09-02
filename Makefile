@@ -128,6 +128,11 @@ ripbylop_run:
 ripbylop_dev_run:
 	./run.sh -d ripbylop_dev
 
+.PHONY: config_gen_ripbylop
+config_gen_ripbylop:
+	./script/git/git_repo_update_group.py --group base,ripbylop
+	./script/generate_config.sh
+
 #########
 #  RUN  #
 #########
