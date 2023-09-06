@@ -54,10 +54,8 @@ image_db_create_ripbylop:
 	# grant_fund_event_integrate
 	
 	# Poly
-	# ripbylop_configuration
 	# helpdesk_mgmt_approbation_purchase
 	# project_benefice_research
-	# helpdesk_mgmt_notify_customer_new_ticket
 	# ripbylop_grant_fund_manage_odoo
 	
 	# Disponibles
@@ -75,7 +73,7 @@ image_db_create_ripbylop:
 	# material_purchase_requisitions
 	# odoo_job_costing_management
 	# pragtech_onedrive_integration
-	./script/addons/install_addons.sh image_creation_ripbylop helpdesk_mgmt_approbation_purchase,ripbylop_grant_fund_manage_odoo,helpdesk_mgmt_notify_customer_new_ticket,project_benefice_research,grant_fund_website_contactus,grant_fund_event_integrate
+	./script/addons/install_addons.sh image_creation_ripbylop helpdesk_mgmt_approbation_purchase,ripbylop_grant_fund_manage_odoo,project_benefice_research,grant_fund_website_contactus,grant_fund_event_integrate
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop --restore_image ripbylop_base
 
 .PHONY: ripbylop_setup
@@ -87,18 +85,19 @@ ripbylop_setup:
 .PHONY: ripbylop
 ripbylop:
 	./script/database/db_restore.py --database ripbylop --image ripbylop_base
-	./script/addons/install_addons.sh ripbylop ripbylop_configuration
+	./script/addons/install_addons.sh ripbylop ripbylop_configuration,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
 	./run.sh --no-http --stop-after-init -d ripbylop --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop_configuration/i18n/fr_CA.po
 
 .PHONY: ripbylop_dev
 ripbylop_dev:
 	./script/database/db_restore.py --database ripbylop_dev --image ripbylop_base
-	./script/addons/install_addons.sh ripbylop_dev ripbylop_configuration,ripbylop_configuration_dev
+	./script/addons/install_addons.sh ripbylop_dev ripbylop_configuration,ripbylop_configuration_dev,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
 	./run.sh --no-http --stop-after-init -d ripbylop_dev --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop_configuration/i18n/fr_CA.po
 
 .PHONY: ripbylop_dev_all
 ripbylop_dev_all:
 	./script/make.sh ripbylop_setup
+	#parallel ::: "./script/make.sh ripbylop" "./script/make.sh ripbylop_dev"
 	./script/make.sh ripbylop
 	./script/make.sh ripbylop_dev
 
