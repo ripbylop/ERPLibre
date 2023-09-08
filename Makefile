@@ -106,6 +106,7 @@ ripbylop_dev_all_afb:
 	git stash; git pull --rebase; git status
 	cd odoo; git pull --rebase; git status; cd -
 	cd addons/addons; git stash; git pull --rebase; git status; cd -
+	./script/manifest/update_manifest_local_dev.sh
 	./script/make.sh ripbylop_dev_all
 
 .PHONY: ripbylop_dev_status
