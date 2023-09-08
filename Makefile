@@ -108,6 +108,8 @@ ripbylop_dev_all_afb:
 	cd addons/addons; git stash; git pull --rebase; git status; cd -
 	./script/manifest/update_manifest_local_dev.sh
 	./script/make.sh ripbylop_dev_all
+	make config_gen_all
+
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
