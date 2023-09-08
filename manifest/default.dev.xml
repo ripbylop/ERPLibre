@@ -56,7 +56,7 @@
   <project name="credit-control.git" path="addons/OCA_credit-control" remote="OCA" groups="addons"/>
   <project name="crm.git" path="addons/OCA_crm" remote="OCA" groups="addons"/>
   <project name="currency.git" path="addons/OCA_currency" remote="OCA" groups="addons"/>
-  <project name="CybroAddons.git" path="addons/CybroOdoo_CybroAddons" remote="CybroOdoo" groups="addons"/>
+  <project name="CybroAddons.git" path="addons/CybroOdoo_CybroAddons" remote="CybroOdoo" groups="addons,ripbylop"/>
   <project name="data-protection.git" path="addons/OCA_data-protection" remote="OCA" groups="addons"/>
   <project name="ddmrp.git" path="addons/OCA_ddmrp" remote="OCA" groups="addons"/>
   <project name="delivery-carrier.git" path="addons/OCA_delivery-carrier" remote="OCA" groups="addons"/>
