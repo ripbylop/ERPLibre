@@ -42,7 +42,7 @@ image_db_create_ripbylop_libre:
 	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,project_budget
 	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder
 	#J'ai retiré purchase pour ce premier release...on le rajoutera plus tard. (purchase,purchase_tier_validation, project_purchase_link)
-	./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,l10n_ca,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder,website_kanban_board_grant
+	./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,l10n_ca,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder,website_kanban_board_grant,website_form
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop_libre --restore_image ripbylop_libre_base
 
 .PHONY: image_db_create_ripbylop
