@@ -32,6 +32,7 @@ if [[ ${EL_MINIMAL_ADDONS} = "False" ]]; then
     printf "${EL_HOME}/addons/Numigi_odoo-partner-addons," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/Numigi_odoo-web-addons," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/OCA_helpdesk," >> ${EL_CONFIG_FILE}
+    printf "${EL_HOME}/addons/OCA_knowledge," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/OCA_project," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/OCA_project-agile," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/OCA_server-auth," >> ${EL_CONFIG_FILE}
@@ -41,6 +42,7 @@ if [[ ${EL_MINIMAL_ADDONS} = "False" ]]; then
     printf "${EL_HOME}/addons/OCA_social," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/OCA_timesheet," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/Smile-SA_odoo_addons," >> ${EL_CONFIG_FILE}
+    printf "${EL_HOME}/addons/camptocamp_odoo-cloud-platform," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/dhongu_deltatech," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/muk-it_muk_web," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/odoomates_odooapps," >> ${EL_CONFIG_FILE}
