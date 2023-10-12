@@ -107,6 +107,11 @@ ripbylop_dev_all_afb:
 	make config_gen_all
 	./script/addons/install_addons.sh ripbylop_dev website_slides,project_category,helpdesk_mgmt_timesheet,helpdesk_mgmt_project,board,mail_activity_board
 
+.PHONY: ripbylop_test_install_grant
+ripbylop_test_install_grant:
+	./script/database/db_restore.py --database ripbylop_prod_test_grant --image bpir_2023-09-07_19-04-55
+	./script/addons/update_prod_to_dev.sh ripbylop_prod_test_grant
+	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration,grant_fund,grant_fund_website
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
