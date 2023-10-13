@@ -111,7 +111,9 @@ ripbylop_dev_all_afb:
 ripbylop_test_install_grant:
 	./script/database/db_restore.py --database ripbylop_prod_test_grant --image bpir_2023-10-13_00-54-59
 	./script/addons/update_prod_to_dev.sh ripbylop_prod_test_grant
+	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration
 	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration,grant_fund,grant_fund_website
+	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
