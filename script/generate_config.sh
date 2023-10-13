@@ -29,6 +29,7 @@ printf "addons_path = ${EL_HOME_ODOO}/addons,${EL_HOME}/addons/addons," >> ${EL_
 printf "${EL_HOME}/addons/OCA_web," >> ${EL_CONFIG_FILE}
 if [[ ${EL_MINIMAL_ADDONS} = "False" ]]; then
     printf "${EL_HOME}/addons/CybroOdoo_CybroAddons," >> ${EL_CONFIG_FILE}
+    printf "${EL_HOME}/addons/CybroOdoo_OpenHRMS," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/Numigi_odoo-partner-addons," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/Numigi_odoo-web-addons," >> ${EL_CONFIG_FILE}
     printf "${EL_HOME}/addons/OCA_helpdesk," >> ${EL_CONFIG_FILE}

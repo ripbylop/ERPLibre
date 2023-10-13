@@ -109,7 +109,7 @@ ripbylop_dev_all_afb:
 
 .PHONY: ripbylop_test_install_grant
 ripbylop_test_install_grant:
-	./script/database/db_restore.py --database ripbylop_prod_test_grant --image bpir_2023-09-07_19-04-55
+	./script/database/db_restore.py --database ripbylop_prod_test_grant --image bpir_2023-10-13_00-54-59
 	./script/addons/update_prod_to_dev.sh ripbylop_prod_test_grant
 	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration,grant_fund,grant_fund_website
 
