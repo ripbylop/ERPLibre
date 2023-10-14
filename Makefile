@@ -81,14 +81,14 @@ ripbylop_setup:
 .PHONY: ripbylop
 ripbylop:
 	./script/database/db_restore.py --database ripbylop --image ripbylop_base
-	./script/addons/install_addons.sh ripbylop ripbylop_configuration,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
-	./run.sh --no-http --stop-after-init -d ripbylop --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop_configuration/i18n/fr_CA.po
+	./script/addons/install_addons.sh ripbylop ripbylop,ripbylop_configuration,ripbylop_configuration_2,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
+	./run.sh --no-http --stop-after-init -d ripbylop --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop/i18n/fr_CA.po
 
 .PHONY: ripbylop_dev
 ripbylop_dev:
 	./script/database/db_restore.py --database ripbylop_dev --image ripbylop_base
-	./script/addons/install_addons.sh ripbylop_dev ripbylop_configuration,ripbylop_configuration_dev,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
-	./run.sh --no-http --stop-after-init -d ripbylop_dev --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop_configuration/i18n/fr_CA.po
+	./script/addons/install_addons.sh ripbylop_dev ripbylop,ripbylop_configuration,ripbylop_configuration_2,ripbylop_configuration_dev,ripbylop_helpdesk_mgmt_notify_customer_new_ticket
+	./run.sh --no-http --stop-after-init -d ripbylop_dev --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop/i18n/fr_CA.po
 
 .PHONY: ripbylop_dev_all
 ripbylop_dev_all:
@@ -113,8 +113,10 @@ ripbylop_test_install_grant:
 	./script/addons/update_prod_to_dev.sh ripbylop_prod_test_grant
 	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration
 	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration
-	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration,grant_fund,grant_fund_website,email_cc
-	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration
+	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop
+	./run.sh --no-http --stop-after-init -d ripbylop_dev --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop/i18n/fr_CA.po
+	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2,grant_fund,grant_fund_website,email_cc
+	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
