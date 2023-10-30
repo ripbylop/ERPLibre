@@ -109,7 +109,7 @@ ripbylop_dev_all_afb:
 
 .PHONY: ripbylop_migration_octobre_2023
 ripbylop_migration_octobre_2023:
-	./script/database/db_restore.py --database ripbylop_prod_test_grant --image bpir_2023-10-13_00-54-59
+	./script/database/db_restore.py --database ripbylop_prod_test_grant --image bpir_2023-10-30_00-41-49_avant_mise_en_production
 	./script/addons/update_prod_to_dev.sh ripbylop_prod_test_grant
 	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration
 	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration
@@ -117,6 +117,7 @@ ripbylop_migration_octobre_2023:
 	./run.sh --no-http --stop-after-init -d ripbylop_prod_test_grant --load-language fr_CA -l fr_CA --i18n-overwrite --i18n-import addons/addons/ripbylop/i18n/fr_CA.po
 	./script/addons/install_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2,grant_fund,grant_fund_website,email_cc
 	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2
+	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database ripbylop_prod_test_grant --restore_image bpir_2023-10-30_00-41-49_apres_mise_en_production
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
