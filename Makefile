@@ -38,7 +38,7 @@ endif
 image_db_create_ripbylop_libre:
 	#./.venv/bin/python3 ./odoo/odoo-bin db --drop --database image_creation_ripbylop
 	#./.venv/bin/python3 ./odoo/odoo-bin db --clone --from_database image_creation_ripbylop --database image_creation_erplibre_base
-	./script/database/db_restore.py --database image_creation_ripbylop_libre --image erplibre_base
+	./script/database/db_restore.py --database image_creation_ripbylop_libre --image odoo14.0_base
 	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,project_budget
 	#./script/addons/install_addons.sh image_creation_ripbylop_libre helpdesk_mgmt,helpdesk_mgmt_project,helpdesk_mgmt_timesheet,board,mail_activity_board,purchase,l10n_ca,purchase_tier_validation,project_purchase_link,project_category,project_stage_mgmt,mail_cc_show_follower,helpdesk_merge,email_cc,muk_web_theme,mail_message_reminder
 	#J'ai retiré purchase pour ce premier release...on le rajoutera plus tard. (purchase,purchase_tier_validation, project_purchase_link)
@@ -74,6 +74,8 @@ image_db_create_ripbylop:
 
 .PHONY: ripbylop_setup
 ripbylop_setup:
+	./script/git/git_repo_update_group.py --group base,ripbylop
+	./script/generate_config.sh
 	./script/make.sh db_clean_cache
 	./script/make.sh image_db_create_ripbylop_libre
 	./script/make.sh image_db_create_ripbylop
@@ -119,6 +121,12 @@ ripbylop_migration_octobre_2023:
 	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database ripbylop_prod_test_grant --restore_image ripbylop_2023-10-30_00-41-49_apres_mise_en_production
 
+.PHONY: ripbylop_migration_decembre_2024
+ripbylop_migration_decembre_2024:
+	./script/database/db_restore.py --database ripbylop_prod --image ripbylop_2024-12-02_05-56-26
+	./script/addons/update_prod_to_dev.sh ripbylop_prod
+	./script/addons/update_addons_all.sh ripbylop_prod
+
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
 	git fetch; git config color.ui true; git config color.status.header "blue bold"; git status
@@ -138,6 +146,14 @@ ripbylop_run:
 .PHONY: ripbylop_dev_run
 ripbylop_dev_run:
 	./run.sh -d ripbylop_dev
+
+.PHONY: ripbylop_prod_run
+ripbylop_prod_run:
+	./run.sh -d ripbylop_prod
+
+.PHONY: ripbylop_dev_open
+ripbylop_dev_open:
+	./.venv/bin/python ./script/selenium/web_login.py
 
 #########
 #  RUN  #
