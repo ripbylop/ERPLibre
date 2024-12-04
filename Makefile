@@ -121,12 +121,13 @@ ripbylop_migration_octobre_2023:
 	./script/addons/uninstall_addons.sh ripbylop_prod_test_grant ripbylop_configuration_2
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database ripbylop_prod_test_grant --restore_image ripbylop_2023-10-30_00-41-49_apres_mise_en_production
 
-.PHONY: ripbylop_migration_decembre_2024
-ripbylop_migration_decembre_2024:
+.PHONY: ripbylop_migration_4_decembre_2024
+ripbylop_migration_4_decembre_2024:
 	./script/database/db_restore.py --database ripbylop_prod --image ripbylop_2024-12-02_05-56-26
 	./script/addons/update_prod_to_dev.sh ripbylop_prod
 	./script/addons/update_addons_all.sh ripbylop_prod
 	./script/addons/install_addons.sh ripbylop_prod project_scrum,project_scrum_epic,project_scrum_epic_helpdesk_mgmt,project_scrum_helpdesk_mgmt,helpdesk_mgmt_button_fetch_email
+	./script/addons/uninstall_addons.sh ripbylop_prod product_category_safe_change
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
