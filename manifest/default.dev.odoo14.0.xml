@@ -97,7 +97,7 @@
   <project name="odoo-product-addons.git" path="addons.odoo14.0/Numigi_odoo-product-addons" remote="Numigi" groups="addons"/>
   <project name="odoo-project-addons.git" path="addons.odoo14.0/Numigi_odoo-project-addons" remote="Numigi" groups="addons"/>
   <project name="odoo-purchase-addons.git" path="addons.odoo14.0/Numigi_odoo-purchase-addons" remote="Numigi" groups="addons"/>
-  <project name="odoo-stock-addons.git" path="addons.odoo14.0/Numigi_odoo-stock-addons" remote="Numigi" groups="addons"/>
+  <project name="odoo-stock-addons.git" path="addons.odoo14.0/Numigi_odoo-stock-addons" remote="ERPLibre" revision="14.0_dev" groups="addons"/>
   <project name="odoo-survey-addons.git" path="addons.odoo14.0/Numigi_odoo-survey-addons" remote="Numigi" groups="addons"/>
   <project name="odoo-test-docs.git" path="doc/itpp-labs_odoo-test-docs" remote="itpp-labs" revision="master" groups="odoo"/>
   <project name="odoo-timesheet-addons.git" path="addons.odoo14.0/Numigi_odoo-timesheet-addons" remote="Numigi" groups="addons"/>
