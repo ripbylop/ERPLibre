@@ -126,6 +126,7 @@ ripbylop_migration_decembre_2024:
 	./script/database/db_restore.py --database ripbylop_prod --image ripbylop_2024-12-02_05-56-26
 	./script/addons/update_prod_to_dev.sh ripbylop_prod
 	./script/addons/update_addons_all.sh ripbylop_prod
+	./script/addons/install_addons.sh ripbylop_prod project_scrum,project_scrum_epic,project_scrum_epic_helpdesk_mgmt,project_scrum_helpdesk_mgmt,helpdesk_mgmt_button_fetch_email
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
