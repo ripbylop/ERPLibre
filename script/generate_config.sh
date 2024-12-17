@@ -34,6 +34,7 @@ if [[ ${EL_MINIMAL_ADDONS} = "False" ]]; then
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_knowledge," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_project," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_project-agile," >> "${EL_CONFIG_FILE}"
+    printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_purchase-workflow," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_server-auth," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_server-brand," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_server-tools," >> "${EL_CONFIG_FILE}"
