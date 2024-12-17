@@ -72,10 +72,14 @@ image_db_create_ripbylop:
 	./script/addons/install_addons.sh image_creation_ripbylop helpdesk_mgmt_approbation_purchase,project_benefice_research,grant_fund_website
 	./.venv/bin/python3 ./odoo/odoo-bin db --backup --database image_creation_ripbylop --restore_image ripbylop_base
 
-.PHONY: ripbylop_setup
-ripbylop_setup:
+.PHONY: ripbylop_update_manifest
+ripbylop_update_manifest:
 	./script/git/git_repo_update_group.py --group base,ripbylop
 	./script/generate_config.sh
+
+.PHONY: ripbylop_setup
+ripbylop_setup:
+	./script/make.sh ripbylop_update_manifest
 	./script/make.sh db_clean_cache
 	./script/make.sh image_db_create_ripbylop_libre
 	./script/make.sh image_db_create_ripbylop
@@ -127,7 +131,7 @@ ripbylop_migration_4_decembre_2024:
 	./script/addons/update_prod_to_dev.sh ripbylop_prod
 	./script/addons/update_addons_all.sh ripbylop_prod
 	./script/addons/install_addons.sh ripbylop_prod project_scrum,project_scrum_epic,project_scrum_epic_helpdesk_mgmt,project_scrum_helpdesk_mgmt,helpdesk_mgmt_button_fetch_email
-	./script/addons/uninstall_addons.sh ripbylop_prod product_category_safe_change
+	#./script/addons/uninstall_addons.sh ripbylop_prod product_category_safe_change
 
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:

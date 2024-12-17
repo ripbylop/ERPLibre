@@ -29,6 +29,7 @@ if [[ ${EL_MINIMAL_ADDONS} = "False" ]]; then
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/CybroOdoo_OpenHRMS," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/Numigi_odoo-partner-addons," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/Numigi_odoo-web-addons," >> "${EL_CONFIG_FILE}"
+    printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_account-budgeting," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_helpdesk," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_knowledge," >> "${EL_CONFIG_FILE}"
     printf "${EL_HOME}/addons.odoo${EL_ODOO_VERSION}/OCA_project," >> "${EL_CONFIG_FILE}"
