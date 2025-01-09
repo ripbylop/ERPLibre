@@ -133,6 +133,13 @@ ripbylop_migration_4_decembre_2024:
 	./script/addons/install_addons.sh ripbylop_prod project_scrum,project_scrum_epic,project_scrum_epic_helpdesk_mgmt,project_scrum_helpdesk_mgmt,helpdesk_mgmt_button_fetch_email
 	#./script/addons/uninstall_addons.sh ripbylop_prod product_category_safe_change
 
+.PHONY: ripbylop_migration_8_janvier_2025
+ripbylop_migration_8_janvier_2025:
+	./script/database/db_restore.py --database ripbylop_prod --image ripbylop_2025-01-08_17-32-29
+	./script/addons/update_prod_to_dev.sh ripbylop_prod
+	./script/addons/update_addons_all.sh ripbylop_prod
+	./script/addons/install_addons.sh ripbylop_prod project_budget,project_parent
+
 .PHONY: ripbylop_dev_status
 ripbylop_dev_status:
 	git fetch; git config color.ui true; git config color.status.header "blue bold"; git status
